@@ -11,12 +11,24 @@ body {
     border-radius: 20px;
     border: double;
 }
-h1, button {
+h1, button, .image-container p{
     font-family: "Rubik Doodle Shadow", system-ui;
     font-weight: 400;
     font-style: normal;
     color: #644536;
     
+}
+.image-container p {
+    font-size: 28px;
+    margin-bottom: 5px;
+    
+}
+.btn:active {
+    font-family: "Rubik Doodle Shadow", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: #644536;
+    background-color: aqua;
 }
 h1  {
     font-size: 60px;
@@ -40,7 +52,7 @@ h2 {
     margin: 10px;
     padding: 5px;
     border-radius: 10px;
-    background-color: #A8B799;
+    background-color: #d4e8be;
     border-color: #644536;
     border-width: 1px;    
 }
@@ -56,9 +68,12 @@ h2 {
     transition: 0.5s;
     background-color: #EEDD82;
 }
-img {
+.image-container img {
     width: 400px;
     margin: 15 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #644536;
 
     
 }
@@ -68,3 +83,15 @@ img {
     text-align: right;
     font-weight: 300;
 }
+.feedback-container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.feedback-container img {
+    width: 50px;
+  
+}
+.hidden {
+    display: none !important;
+  }
