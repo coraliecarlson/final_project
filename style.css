@@ -6,7 +6,8 @@ body {
 #container {
     background-color: #F8F8F0; 
     margin: 10px auto;
-    width: 400px;
+    width: 375px;
+    max-width: 90%;
     padding: 20px;
     border-radius: 20px;
     border: double;
@@ -20,7 +21,7 @@ h1, button, .image-container p{
 }
 .image-container p {
     font-size: 28px;
-    margin-bottom: 5px;
+    margin: 5px;
     
 }
 .btn:active {
@@ -48,7 +49,7 @@ h2 {
 }
 
 .btn {
-    font-size: 24px;
+    font-size: 23px;
     margin: 10px;
     padding: 5px;
     border-radius: 10px;
@@ -63,19 +64,25 @@ h2 {
     padding: 5px;
 
 }
+.answers {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+
+}
+
 .btn:hover, .btn:active {
     
     transition: 0.5s;
     background-color: #EEDD82;
 }
 .image-container img {
-    width: 400px;
+    width: 375px;
     margin: 15 0;
     border-style: solid;
     border-width: 1px;
-    border-color: #644536;
-
-    
+    border-color: #644536;   
 }
 .source {
     font-style: italic;
@@ -95,3 +102,70 @@ h2 {
 .hidden {
     display: none !important;
   }
+  
+
+ /* for tablet screens */
+ @media (min-width: 401px) and (max-width: 799px) { 
+
+    #container {
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+      }
+      
+      .image-container img {
+        width: 100%;
+        height: auto;
+      }
+ }
+/* for large screens */
+@media (min-width: 801px) {
+
+    #container {
+        
+        width: 80%;
+        max-width: 800px;
+        margin: auto;
+        
+    }
+
+    .quiz-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    .image-container img {
+        width: 100%;
+    
+            }
+    .image-container {
+        flex: 1;
+    }
+    .content-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 35px;
+    }
+    #explain-container {
+        margin-bottom: 0;
+    }
+    p#explainText {
+        margin: 0;
+    }
+    
+    .source-container {
+        margin-top: 0;
+    }
+    p#sourceText {
+        margin: 0;
+    }
+    h1  {
+        font-size: 72px;
+} 
+    h2 {
+        font-size: 24px;
+    }
+    
+}

@@ -18,7 +18,7 @@ const questions = [
       "Nope, that's illegal"
     ],
     correctAnswer: "Buy it!",
-    explain: "The Federal Marine Mammal Protection Act of 1972 prohibits the sale of polar bear and walrus parts, but there is an exception for Native Alaskans to sell their handicrafts. ",
+    explain: "The Federal Marine Mammal Protection Act of 1972 prohibits the sale of polar bear and walrus parts, but there is an exception for Native Alaskans to sell their handicrafts like this one. ",
     source: "Source: U.S. Fish and Wildlife Service"
   },
   {
@@ -29,7 +29,7 @@ const questions = [
       "Nope, that's illegal"
     ],
     correctAnswer: "Nope, that's illegal",
-    explain: "U.S. law generally prohibits selling or buying cat or dog fur, and since a taxidermy cat includes the fur, this one is banned. Plus the Tariff Act of 1930 prevents the importing or exporting of cat or dog fur. This one is for sale in Britian, so there's no way to get it home legally. Note: Taxiderming your own cat or dog is just fine, as long as you don't sell it. ",
+    explain: "U.S. law generally prohibits selling or buying cat or dog fur, and this taxidermy cat includes the fur. Plus the Tariff Act of 1930 prevents the importing or exporting of cat or dog fur. This one is for sale in Britian, so there's no way to get it home legally. Note: It's fine to preserve your own cat or dog with taxidermy, as long as you don't sell it.",
     source: "Source: Federal Law: 19 U.S. Code 1308 and 19 U.S.C.A. 1308"
   },
   {
@@ -41,7 +41,7 @@ const questions = [
     ],
     correctAnswer: "Buy it!",
     explain: "While there are several laws preventing the sale of cat fur, the bones are up for grabs. ",
-    source: "Source: Unknown"
+    source: "Source: U.S. Fish and Wildlife Service"
   },
   {
     topic: "Eagle Feather",
@@ -51,28 +51,27 @@ const questions = [
       "Nope, that's illegal"
     ],
     correctAnswer: "Nope, that's illegal",
-    explain: "The sale of any bald eagle or golden eagle feather is illegal. In fact, it is even illegal to take an eagle feather that you find on the ground.\"",
+    explain: "The sale of any bald eagle or golden eagle feather is illegal. In fact, it is even illegal to take an eagle feather that you find on the ground.",
     source: "Source: U.S. Fish and Wildlife Service"
   },
   {
-    topic: "Bluejay Feather ",
+    topic: "Blue Jay Feather ",
     image: "images/etsy-bluejay-feathers.png",
     possibleAnswers: [
       "Buy it!",
       "Nope, that's illegal"
     ],
     correctAnswer: "Nope, that's illegal",
-    explain: "It's not just our national bird that is protected. The Migratory Bird Treaty Act prohibits the buying and possession of feathers from more than 1,000 birds, including Blue Jays. So if you see one on the ground, don't pick it up! (Unless you have a permit.) ",
+    explain: "It's not just our national bird that is protected. The Migratory Bird Treaty Act prohibits the buying and possession of feathers from more than 1,000 birds, including blue jays. So if you see one on the ground, don't pick it up! (Unless you have a permit.) ",
     source: "Source: Migratory Bird Treaty Act"
   },
   {
     topic: "Finshed!",
     image: "images/buyer-beware.png",
     possibleAnswers: [
-      "Buy it!",
-      "Nope, that's illegal"
+      "Learn More"
     ],
-    correctAnswer: "",
+    correctAnswer: "Learn More",
     explain: "Now you know how a patchwork of laws aim to protect animals – and how banned animal-made products frequently end up online anyway. If you want to buy an animal product, always research the laws governing it first. And if those laws aren't clear, call the Fish and Wildlife Service for clarification. ",
     source: "By Coralie Carlson"
   }
@@ -86,31 +85,26 @@ const sourceContainer = document.getElementById("sourceContainer");
 const nextButton = document.getElementById("nextButton");
 const feedbackContainer = document.getElementById("feedbackContainer");
 const feedbackImage = document.getElementById("feedbackImage");
+const restartButton = document.getElementById("restartButton");
 let currentQuestionIndex = 0;
 
 function handleQuestion(index) {  
-
-  // handle quiz progress section
-  // quizProgress.innerHTML = "";
-  // questions.forEach((question) => {
-  //   quizProgress.innerHTML += "<span></span>";
-  // });
-  // let spans = document.querySelectorAll("span");
-  // for (let i = 0; i <= index; i++) {
-  //   spans[i].classList.add("seen");
-  // }
 
   // topic/image
   questionContainer.innerHTML = `<p>${questions[index].topic}</p>
    <img src="${questions[index].image}" alt="${questions[index].topic}" />
   `;
+    // hide next button on last question
+  if (index === questions.length - 1) {
+    nextButton.classList.add("hidden");
+  }
 
   // answers
   answerContainer.innerHTML = "";
   questions[index].possibleAnswers.forEach((answer) => {
-    answerContainer.innerHTML += `<button class="btn">${answer}</button>`;
+    answerContainer.innerHTML += `<button class="btn options">${answer}</button>`;
   });
-  let answers = document.querySelectorAll("button");
+  let answers = document.querySelectorAll(".options");
   answers.forEach((answer) => {
     answer.addEventListener("click", (e) => {
       if (e.target.textContent === questions[index].correctAnswer) {
@@ -129,20 +123,16 @@ function handleQuestion(index) {
       feedbackContainer.classList.remove("hidden");
       explainContainer.classList.remove("hidden");
       sourceContainer.classList.remove("hidden");
-      nextButton.classList.remove("hidden");
-      
-      
+      if (index < questions.length - 1) {
+        nextButton.classList.remove("hidden");
+        restartButton.classList.add("hidden");
+      }
+      else {
+        nextButton.classList.add("hidden");
+        restartButton.classList.remove("hidden");
+      }
 
       });
-      
-
-      
-      // if (currentQuestionIndex === questions.length - 1) {
-      //   currentQuestionIndex = 0;
-      // } else {
-      //   currentQuestionIndex++;
-      // }
-      // handleQuestion(currentQuestionIndex);
     });
   }
 
@@ -158,4 +148,10 @@ nextButton.addEventListener("click", () => {
 
   handleQuestion(currentQuestionIndex);
 });
+
+restartButton.addEventListener("click", () => {
+  location.reload();
+});
+
+
 handleQuestion(currentQuestionIndex);
