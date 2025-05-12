@@ -155,3 +155,4 @@ restartButton.addEventListener("click", () => {
 
 
 handleQuestion(currentQuestionIndex);
+// test
